@@ -21,7 +21,7 @@ spec:
           - name: BOOTSTRAP_SERVERS
             value: kafka-xxxxxx.com:443    # update this
           - name: MESSAGE_COUNT
-            value: "10"                    # increase this for a bigger load
+            value: "15"                    # increase this for a bigger load
           - name: DELAY_MS
             value: "100"
           - name: SASL

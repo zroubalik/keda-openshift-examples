@@ -47,21 +47,26 @@ Chech the logs of the Kafka Consumer application:
 ```bash
 oc logs deployment.apps/kafka-consumer
 ```
-There should be 10 messages generated and consumed:
+There should be 15 messages generated and consumed:
 ```bash
 2022/02/09 14:15:41 Go consumer starting with config=&{BootstrapServers:kafka-xxxxxx.kafka.rhcloud.com:443 Topic:my-topic GroupID:my-group SaslEnabled:true SaslUser:xxxxxx SaslPassword:xxxxxx}
 2022/02/09 14:15:47 Consumer group handler setup
 2022/02/09 14:15:47 Sarama consumer up and running!...
-2022/02/09 14:15:48 Message received: value=Hello from Go Kafka Sarama-1, topic=my-topic, partition=7, offset=120
-2022/02/09 14:15:48 Message received: value=Hello from Go Kafka Sarama-0, topic=my-topic, partition=2, offset=116
-2022/02/09 14:15:48 Message received: value=Hello from Go Kafka Sarama-2, topic=my-topic, partition=2, offset=117
-2022/02/09 14:15:48 Message received: value=Hello from Go Kafka Sarama-3, topic=my-topic, partition=2, offset=118
-2022/02/09 14:15:48 Message received: value=Hello from Go Kafka Sarama-5, topic=my-topic, partition=8, offset=111
-2022/02/09 14:15:48 Message received: value=Hello from Go Kafka Sarama-4, topic=my-topic, partition=1, offset=142
-2022/02/09 14:15:48 Message received: value=Hello from Go Kafka Sarama-6, topic=my-topic, partition=9, offset=127
-2022/02/09 14:15:48 Message received: value=Hello from Go Kafka Sarama-7, topic=my-topic, partition=7, offset=121
-2022/02/09 14:15:48 Message received: value=Hello from Go Kafka Sarama-8, topic=my-topic, partition=4, offset=130
-2022/02/09 14:15:49 Message received: value=Hello from Go Kafka Sarama-9, topic=my-topic, partition=9, offset=128
+2022/02/09 14:17:13 Message received: value=Hello from Go Kafka Sarama-0, topic=my-topic, partition=4, offset=14
+2022/02/09 14:17:13 Message received: value=Hello from Go Kafka Sarama-1, topic=my-topic, partition=2, offset=10
+2022/02/09 14:17:13 Message received: value=Hello from Go Kafka Sarama-2, topic=my-topic, partition=1, offset=11
+2022/02/09 14:17:14 Message received: value=Hello from Go Kafka Sarama-3, topic=my-topic, partition=3, offset=7
+2022/02/09 14:17:14 Message received: value=Hello from Go Kafka Sarama-4, topic=my-topic, partition=0, offset=18
+2022/02/09 14:17:14 Message received: value=Hello from Go Kafka Sarama-5, topic=my-topic, partition=1, offset=12
+2022/02/09 14:17:14 Message received: value=Hello from Go Kafka Sarama-6, topic=my-topic, partition=1, offset=13
+2022/02/09 14:17:14 Message received: value=Hello from Go Kafka Sarama-7, topic=my-topic, partition=1, offset=14
+2022/02/09 14:17:14 Message received: value=Hello from Go Kafka Sarama-8, topic=my-topic, partition=0, offset=19
+2022/02/09 14:17:14 Message received: value=Hello from Go Kafka Sarama-9, topic=my-topic, partition=3, offset=8
+2022/02/09 14:17:14 Message received: value=Hello from Go Kafka Sarama-10, topic=my-topic, partition=1, offset=15
+2022/02/09 14:17:14 Message received: value=Hello from Go Kafka Sarama-11, topic=my-topic, partition=4, offset=15
+2022/02/09 14:17:15 Message received: value=Hello from Go Kafka Sarama-12, topic=my-topic, partition=2, offset=11
+2022/02/09 14:17:15 Message received: value=Hello from Go Kafka Sarama-13, topic=my-topic, partition=2, offset=12
+2022/02/09 14:17:15 Message received: value=Hello from Go Kafka Sarama-14, topic=my-topic, partition=2, offset=13
 ```
 
 ## 5. Deploy ScaledObject to enable Kafka Consumer application autoscaling
@@ -89,7 +94,7 @@ kafka-consumer   0/0     0            0           11m
 ```
 
 ## 6. Send more messages to Kafka to test the Kafka Consumer application autoscaling
-Update `MESSAGE_COUNT` environment variable in [load.yaml](load.yaml) file, increase the value from `10` to at least `500` to generate more load. Then create this Kubernetes Job with the following command:
+Update `MESSAGE_COUNT` environment variable in [load.yaml](load.yaml) file, increase the value from `15` to at least `500` to generate more load. Then create this Kubernetes Job with the following command:
 ```bash
 oc create -f load.yaml
 ```
