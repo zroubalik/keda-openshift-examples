@@ -1,0 +1,12 @@
+apiVersion: keda.sh/v1alpha1
+kind: TriggerAuthentication
+metadata:
+  name: keda-trigger-auth-prometheus
+spec:
+  secretTargetRef:
+  - parameter: bearerToken
+    name: <SA_TOKEN>       # update this
+    key: token
+  - parameter: ca
+    name: <SA_TOKEN>       # update this
+    key: ca.crt
