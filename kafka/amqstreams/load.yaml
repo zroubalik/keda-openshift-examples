@@ -1,0 +1,26 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  generateName: kafka-amqstreams-producer-
+spec:
+  parallelism: 1
+  completions: 1
+  backoffLimit: 1
+  template:
+    metadata:
+      name: kafka-amqstreams-producer
+      labels:
+        app: kafka-amqstreams-producer
+    spec:
+      restartPolicy: Never
+      containers:
+      - name: kafka-amqstreams-producer
+        image: quay.io/zroubalik/kafka-app:latest
+        command: [ "/kafkaproducerapp" ]      
+        env:
+          - name: BOOTSTRAP_SERVERS
+            value: my-cluster-kafka-bootstrap.openshift-operators.svc:9092
+          - name: MESSAGE_COUNT
+            value: "15"                    # increase this for a bigger load
+          - name: DELAY_MS
+            value: "100"
