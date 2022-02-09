@@ -1,5 +1,5 @@
 # Autoscaling of Kafka Consumer application connected to Red Hat OpenShift Streams for Apache Kafka
-The following guide describes the way how can be Kafka Consumer application autoscaled by KEDA on Openshift. The application is being scaled based on lag in the Kafka topic. If there isn't any traffic the application is autoscaled to 0 replicas, if there's some load the number of replicas is being scaled up to 5 replicas.
+The following guide describes the way how can be Kafka Consumer application autoscaled by KEDA on Openshift. The application is being scaled based on lag in the Kafka topic. If there isn't any traffic the application is autoscaled to 0 replicas, if there's some load the number of replicas is being scaled up to `5` replicas.
 
 Kafka KEDA scaler is being used for this setup, for details please refer to [documentation](https://keda.sh/docs/latest/scalers/apache-kafka/).
 
@@ -8,7 +8,8 @@ In `OperatorHub` locate and install KEDA, follow the instuctions to create `Keda
 
 ## 1. Prepare Kafka Instance
  1. Create a Kafka instance at [Red Hat Hybrid Cloud Console](https://console.redhat.com/application-services/streams/kafkas) and obtain Boostrap Server address.
- 2. Create new Service Account or reuse existing one to assing permissions to access Kafka Topic `my-topic` and Consumer Group `my-group` for the created Kafka instance
+ 2. Create Kafka Topic `my-topic`, in order to allow Kafka Consumer autoscaling, you need to set the number of partitions to number greater than `1`. The number of partitions equals the maximum number of Kafka Consumer instances. In our example, set it to `5` partitions.
+ 3. Create new Service Account or reuse existing one to assing permissions to access Kafka Topic `my-topic` and Consumer Group `my-group` for the created Kafka instance.
 
 ## 2. Create Secret with Kafka credentials
 There are two ways how to create a secret:
