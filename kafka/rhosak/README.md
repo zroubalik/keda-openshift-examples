@@ -1,6 +1,8 @@
 # Autoscaling of Kafka Consumer application connected to Red Hat OpenShift Streams for Apache Kafka
 The following guide describes the way how can be Kafka Consumer application autoscaled by KEDA on Openshift. The application is being scaled based on lag in the Kafka topic. If there isn't any traffic the application is autoscaled to 0 replicas, if there's some load the number of replicas is being scaled up to 5 replicas.
 
+Kafka KEDA scaler is being used for this setup, for details please refer to [documentation](https://keda.sh/docs/latest/scalers/apache-kafka/).
+
 ## 0. Install KEDA
 In `OperatorHub` locate and install KEDA, follow the instuctions to create `KedaController` instance in `keda` namespace.
 
