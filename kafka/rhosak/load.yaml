@@ -1,0 +1,42 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  generateName: kafka-producer-
+spec:
+  parallelism: 1
+  completions: 1
+  backoffLimit: 1
+  template:
+    metadata:
+      name: kafka-producer
+      labels:
+        app: kafka-producer
+    spec:
+      restartPolicy: Never
+      containers:
+      - name: kafka-producer
+        image: quay.io/zroubalik/kafka-app:latest
+        command: [ "/kafkaproducerapp" ]      
+        env:
+          - name: BOOTSTRAP_SERVERS
+            value: kafka-xxxxxx.com:443    # update this
+          - name: MESSAGE_COUNT
+            value: "10"                    # increase this for a bigger load
+          - name: DELAY_MS
+            value: "100"
+          - name: SASL
+            value: enabled
+          - name: TOPIC
+            value: my-topic
+          - name: GROUP_ID
+            value: my-group
+          - name: SASL_USER
+            valueFrom:
+              secretKeyRef:
+                name: keda-kafka-secrets
+                key: username
+          - name: SASL_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: keda-kafka-secrets
+                key: password

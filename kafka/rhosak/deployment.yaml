@@ -1,0 +1,46 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: kafka-consumer
+  labels:
+    app: kafka-consumer
+spec:
+  selector:
+    matchLabels:
+      app: kafka-consumer
+  template:
+    metadata:
+      labels:
+        app: kafka-consumer
+    spec:
+      containers:
+      - name: kafka-consumer
+        image: quay.io/zroubalik/kafka-app:latest
+        env:
+          - name: BOOTSTRAP_SERVERS
+            value: kafka-xxxxxx.com:443    # update this
+          - name: SASL
+            value: enabled
+          - name: TOPIC
+            value: my-topic
+          - name: GROUP_ID
+            value: my-group
+          - name: SASL_USER
+            valueFrom:
+              secretKeyRef:
+                name: keda-kafka-secrets
+                key: username
+          - name: SASL_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: keda-kafka-secrets
+                key: password
+        resources:
+            requests:
+              cpu: 100m
+              memory: 100Mi
+            limits:
+              cpu: 500m
+              memory: 500Mi
+        command:
+        - /kafkaconsumerapp

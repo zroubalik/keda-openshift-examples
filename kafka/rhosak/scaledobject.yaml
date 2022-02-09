@@ -1,0 +1,40 @@
+apiVersion: keda.sh/v1alpha1
+kind: TriggerAuthentication
+metadata:
+  name: keda-trigger-auth-kafka-credential
+spec:
+  secretTargetRef:
+  - parameter: sasl
+    name: keda-kafka-secrets
+    key: sasl
+  - parameter: username
+    name: keda-kafka-secrets
+    key: username
+  - parameter: password
+    name: keda-kafka-secrets
+    key: password
+  - parameter: tls
+    name: keda-kafka-secrets
+    key: tls
+---
+apiVersion: keda.sh/v1alpha1
+kind: ScaledObject
+metadata:
+  name: kafka-consumer-scaledobject
+spec:
+  minReplicaCount: 0
+  maxReplicaCount: 5
+  cooldownPeriod: 5
+  pollingInterval: 10
+  scaleTargetRef:
+    name: kafka-consumer
+  triggers:
+  - type: kafka
+    metadata:
+      topic: my-topic
+      bootstrapServers: kafka-xxxxxx.com:443    # update this
+      consumerGroup: my-group
+      lagThreshold: '1'
+      offsetResetPolicy: 'latest'
+    authenticationRef:
+      name: keda-trigger-auth-kafka-credential
