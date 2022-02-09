@@ -22,7 +22,7 @@ const (
 	GroupIDDefault          = "my-group"
 	SaslEnabledDefault      = "disabled"
 	SaslUserDefault         = "user"
-	SaslPasswordDefault     = "passwrod"
+	SaslPasswordDefault     = "password"
 )
 
 // ConsumerConfig defines the producer configuration

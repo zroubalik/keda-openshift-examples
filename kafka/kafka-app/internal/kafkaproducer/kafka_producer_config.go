@@ -28,7 +28,7 @@ const (
 	ProducerAcksDefault     = int16(1)
 	SaslEnabledDefault      = "disabled"
 	SaslUserDefault         = "user"
-	SaslPasswordDefault     = "passwrod"
+	SaslPasswordDefault     = "password"
 )
 
 // ProducerConfig defines the producer configuration
