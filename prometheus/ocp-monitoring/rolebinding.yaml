@@ -5,7 +5,7 @@ metadata:
   namespace: <NAMESPACE>             # update this
 roleRef:
   apiGroup: rbac.authorization.k8s.io
-  kind: ClusterRole
+  kind: Role
   name: thanos-metrics-reader
 subjects:
 - kind: ServiceAccount
