@@ -5,7 +5,13 @@ Autoscaling to 0 replicas can't work for this type of application, because metri
 
 Prometheus KEDA scaler is being used for this setup, for details please refer to [documentation](https://keda.sh/docs/latest/scalers/prometheus/).
 
+### Architecture:
 ![Diagram](images/diagram.png?raw=true "Autoscaling of application based on Prometheus metrics")
+
+### Video recording of this demo:
+[![KEDA: Autoscaling of application based on metrics from OpenShift Monitoring Prometheus instance](https://img.youtube.com/vi/3T3VWCeyRgI/0.jpg)](https://youtu.be/3T3VWCeyRgI)
+
+---
 
 ## 0. Install KEDA and enable OpenShift monitoring for user-defined projects
  1. In `OperatorHub` locate and install KEDA, follow the instuctions to create `KedaController` instance in `keda` namespace. **Please use KEDA version >= 2.6.0.**

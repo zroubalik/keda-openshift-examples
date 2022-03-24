@@ -3,7 +3,14 @@ The following guide describes the way how can be Kafka Consumer application auto
 
 Kafka KEDA scaler is being used for this setup, for details please refer to [documentation](https://keda.sh/docs/latest/scalers/apache-kafka/).
 
+### Architecture:
 ![Diagram](images/diagram.png?raw=true "Autoscaling of Kafka Consumer application")
+
+
+### Video recording of this demo:
+[![KEDA: Autoscaling of Kafka Consumer application connected to RHOSAK](https://img.youtube.com/vi/qTBIBE3Dc60/0.jpg)](https://youtu.be/qTBIBE3Dc60)
+
+---
 
 ## 0. Install KEDA
 In `OperatorHub` locate and install KEDA, follow the instuctions to create `KedaController` instance in `keda` namespace.

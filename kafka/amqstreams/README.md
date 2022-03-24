@@ -5,7 +5,13 @@ Kafka KEDA scaler is being used for this setup, for details please refer to [doc
 
 [Appendix](#appendix-fallback) section describes `Fallback` functionality, useful when the external service that is being used to poll for a metrics (in this example a Kafka cluster) is unavailable.
 
+### Architecture:
 ![Diagram](images/diagram.png?raw=true "Autoscaling of Kafka Consumer application")
+
+### Video recording of this demo:
+[![KEDA: Autoscaling of Kafka Consumer application connected to AMQ Streams Kafka](https://img.youtube.com/vi/nJz7zVoF1DA/0.jpg)](https://youtu.be/nJz7zVoF1DA)
+
+---
 
 ## 0. Install KEDA
 In `OperatorHub` locate and install KEDA, follow the instuctions to create `KedaController` instance in `keda` namespace.
@@ -147,7 +153,13 @@ In this example the application will be scaled to `2` replicas if there are `3` 
 
 Let's introduce a failure to previously defined `kafka` scaler to see `fallback` functionality in action.
 
+### Architecture:
 ![Diagram](images/diagram-fallback.png?raw=true "Autoscaling of Kafka Consumer application with fallback")
+
+### Video recording of this demo:
+[![KEDA: Autoscaling of Kafka Consumer application connected to AMQ Streams Kafka](https://img.youtube.com/vi/YqfxOT5h9Bc/0.jpg)](https://youtu.be/YqfxOT5h9Bc)
+
+---
 
 0. Delete the previously created ScaledObject:
 ```bash
