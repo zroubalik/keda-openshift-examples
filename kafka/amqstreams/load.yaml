@@ -20,6 +20,8 @@ spec:
         env:
           - name: BOOTSTRAP_SERVERS
             value: my-cluster-kafka-bootstrap.openshift-operators.svc:9092
+          - name: TOPIC
+            value: my-topic
           - name: MESSAGE_COUNT
             value: "15"                    # increase this for a bigger load
           - name: DELAY_MS
