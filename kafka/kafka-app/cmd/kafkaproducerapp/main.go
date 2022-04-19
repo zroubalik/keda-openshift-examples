@@ -15,7 +15,7 @@ import (
 
 func main() {
 	config := kafkaproducer.NewProducerConfig()
-	log.Printf("Go producer starting with config=%+v\n", config)
+	log.Printf("Go producer starting, connecting to Kafka Server: bootstrapServer=%s, topic=%s, sasl=%v, messageCount=%v\n", config.BootstrapServers, config.Topic, config.SaslEnabled, config.MessageCount)
 
 	signals := make(chan os.Signal, 1)
 	signal.Notify(signals, syscall.SIGINT, syscall.SIGKILL)

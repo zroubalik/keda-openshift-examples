@@ -15,7 +15,7 @@ import (
 
 func main() {
 	config := kafkaconsumer.NewConsumerConfig()
-	log.Printf("Go consumer starting with config=%+v\n", config)
+	log.Printf("Go consumer starting, connecting to Kafka Server: bootstrapServer=%s, topic=%s, group=%s, sasl=%v\n", config.BootstrapServers, config.Topic, config.GroupID, config.SaslEnabled)
 
 	signals := make(chan os.Signal, 1)
 	signal.Notify(signals, syscall.SIGINT, syscall.SIGKILL)
