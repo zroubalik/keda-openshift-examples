@@ -100,7 +100,7 @@ Replace `<NAMESPACE>` in URL in [load.yaml](load.yaml) file. Then create this Ku
 ```bash
 oc create -f load.yaml
 ```
-You should see created an increased nubmer replicas of the Kafka Consumer application until all sent messages are processed. And the the application will be again autoscaled down to one replica. You can check the changing number of replicas by running the following command:
+You should see created an increased nubmer replicas of the test Consumer application until all sent requests are processed. And the the application will be again autoscaled down to one replica. You can check the changing number of replicas by running the following command:
 ```bash
 watch oc get deployment.apps/test-app
 ```
