@@ -6,10 +6,18 @@ spec:
   template:
     spec:
       containers:
-      - image: jordi/ab
+      - image: quay.io/zroubalik/hey
         name: test
         command: ["/bin/sh"]
-        args: ["-c", "for i in $(seq 1 30);do echo $i;ab -c 5 -n 100 -v 2 http://test-app.<NAMESPACE>.svc/;sleep 1;done"]   # replace <NAMESPACE>
+        args: ["-c", "for i in $(seq 1 30);do echo $i;/hey -c 5 -n 100 http://test-app.<NAMESPACE>.svc;sleep 1;done"]   # replace <NAMESPACE>
+        securityContext:
+          allowPrivilegeEscalation: false
+          runAsNonRoot: true
+          capabilities:
+            drop:
+              - ALL
+          seccompProfile:
+            type: RuntimeDefault
       restartPolicy: Never
   activeDeadlineSeconds: 120
   backoffLimit: 2

@@ -19,7 +19,9 @@ var httpRequestsTotal = prometheus.NewCounter(
 
 func handler(w http.ResponseWriter, r *http.Request) {
 	httpRequestsTotal.Inc()
-	fmt.Fprint(w, "Received a request")
+	msg := "Received a request"
+	fmt.Fprint(w, msg)
+	fmt.Println(msg)
 }
 
 func main() {
