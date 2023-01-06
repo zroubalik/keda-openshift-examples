@@ -16,6 +16,15 @@ spec:
       containers:
       - name: kafka-amqstreams-consumer
         image: quay.io/zroubalik/kafka-app:latest
+        imagePullPolicy: IfNotPresent
+        securityContext:
+          allowPrivilegeEscalation: false
+          runAsNonRoot: true
+          capabilities:
+            drop:
+              - ALL
+          seccompProfile:
+            type: RuntimeDefault
         env:
           - name: BOOTSTRAP_SERVERS
             value: my-cluster-kafka-bootstrap.openshift-operators.svc:9092
