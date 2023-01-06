@@ -16,6 +16,15 @@ spec:
       containers:
       - name: kafka-consumer
         image: quay.io/zroubalik/kafka-app:latest
+        imagePullPolicy: IfNotPresent
+        securityContext:
+          allowPrivilegeEscalation: false
+          runAsNonRoot: true
+          capabilities:
+            drop:
+              - ALL
+          seccompProfile:
+            type: RuntimeDefault
         env:
           - name: BOOTSTRAP_SERVERS
             value: kafka-xxxxxx.com:443    # update this

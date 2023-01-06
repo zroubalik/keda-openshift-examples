@@ -16,7 +16,16 @@ spec:
       containers:
       - name: kafka-producer
         image: quay.io/zroubalik/kafka-app:latest
-        command: [ "/kafkaproducerapp" ]      
+        imagePullPolicy: IfNotPresent
+        securityContext:
+          allowPrivilegeEscalation: false
+          runAsNonRoot: true
+          capabilities:
+            drop:
+              - ALL
+          seccompProfile:
+            type: RuntimeDefault
+        command: [ "/kafkaproducerapp" ]
         env:
           - name: BOOTSTRAP_SERVERS
             value: kafka-xxxxxx.com:443    # update this
