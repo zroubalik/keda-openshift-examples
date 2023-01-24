@@ -16,5 +16,7 @@ FROM registry.access.redhat.com/ubi8/ubi-minimal:latest
 WORKDIR /
 COPY --from=builder /workspace/kafkaconsumerapp .
 COPY --from=builder /workspace/kafkaproducerapp .
+# 65532 is numeric for nonroot
+USER 65532:65532
 
 ENTRYPOINT ["/kafkaconsumerapp"]
