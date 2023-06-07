@@ -11,7 +11,7 @@ spec:
       transaction.state.log.min.isr: 2
       default.replication.factor: 3
       min.insync.replicas: 2
-      inter.broker.protocol.version: '3.2'
+      inter.broker.protocol.version: '3.4'
     storage:
       type: ephemeral
     listeners:
@@ -23,7 +23,7 @@ spec:
         port: 9093
         type: internal
         tls: true
-    version: 3.2.3
+    version: 3.4.0
     replicas: 3
   entityOperator:
     topicOperator: {}
